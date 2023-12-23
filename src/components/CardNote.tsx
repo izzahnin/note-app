@@ -1,4 +1,3 @@
-// import { useState } from "react";
 import { showFormattedDate } from "../utils";
 
 interface CardNoteProps {

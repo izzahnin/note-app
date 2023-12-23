@@ -20,7 +20,7 @@ export default function InputNote(props: InputNoteProps) {
 
   const onSubmit = () => {
     const newNote = {
-      id: Date.now(), // Assuming each note has a unique ID
+      id: Date.now(),
       title,
       body,
       createdAt: new Date().toISOString(),
