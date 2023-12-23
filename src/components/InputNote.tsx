@@ -1,14 +1,34 @@
 import { useState } from "react";
+import { DataItem } from "../utils/index";
 
+interface InputNoteProps {
+  addNote: (note: DataItem) => void;
+}
 
-export default function InputNote() {
+export default function InputNote(props: InputNoteProps) {
+  const { addNote } = props;
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
 
+  const limitTitle = (value: string) => {
+    return value.length <= 50 ? value : value.slice(0, 50);
+  }
+
+  const onTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setTitle(limitTitle(e.target.value));
+  }
+
   const onSubmit = () => {
-    console.log("Note created");
-    console.log(title);
-    console.log(body);
+    const newNote = {
+      id: Date.now(), // Assuming each note has a unique ID
+      title,
+      body,
+      createdAt: new Date().toISOString(),
+      archived: false,
+    };
+    addNote(newNote);
+    setTitle("");
+    setBody("");
   }
 
   return (
@@ -21,9 +41,8 @@ export default function InputNote() {
             type="text"
             placeholder="Judul catatan"
             value={title}
-            onChange={(e) => setTitle(e.target.value)}
+            onChange={onTitleChange}
             className="w-full px-2 py-1 border rounded-md"
-            maxLength={50}
           />
           <span className="text-gray-500 text-right">Sisa karakter: {50 - title.length}</span>
         </div>
@@ -38,7 +57,7 @@ export default function InputNote() {
         </div>
       </section>
       <button
-        type="submit"
+        type="button"
         className="bg-blue-500 text-white py-2 px-4 rounded-md"
         onClick={onSubmit}
       >
