@@ -27,11 +27,18 @@ function App() {
     setNotes(archiveNote);
   };
 
+  // search note
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const filteredNotes = notes.filter((note) => {
+    return note.title.toLowerCase().includes(searchQuery.toLowerCase());
+  });
+
   return (
     <main className="w-screen min-h-screen h-full flex flex-col">
-      <Header />
+      <Header onSearchChange={(query) => setSearchQuery(query)} />
       <InputNote addNote={addNote} />
-      <ListNote notes={notes} deleteNote={deleteNote} toggleArchive={toggleArchive} />
+      <ListNote notes={filteredNotes} deleteNote={deleteNote} toggleArchive={toggleArchive} />
     </main>
   );
 }
