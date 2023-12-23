@@ -9,6 +9,7 @@ export default function InputNote(props: InputNoteProps) {
   const { addNote } = props;
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
+  const [titleError, setTitleError] = useState("");
 
   const limitTitle = (value: string) => {
     return value.length <= 50 ? value : value.slice(0, 50);
@@ -16,9 +17,15 @@ export default function InputNote(props: InputNoteProps) {
 
   const onTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(limitTitle(e.target.value));
+    setTitleError(limitTitle.length === 0 ? "Title is required" : "");
   };
 
   const onSubmit = () => {
+    if (title.trim() === "") {
+      setTitleError("Title is required");
+      return;
+    }
+
     const newNote = {
       id: Date.now(),
       title,
@@ -37,6 +44,7 @@ export default function InputNote(props: InputNoteProps) {
         <div className="flex flex-col w-full m-auto gap-1">
           <label className="text-gray-500">Title</label>
           <input type="text" placeholder="Judul catatan" value={title} onChange={onTitleChange} className="w-full px-2 py-1 border rounded-md" />
+          {titleError && <span className="text-red-500 text-right">{titleError}</span>}
           <span className="text-gray-500 text-right">Sisa karakter: {50 - title.length}</span>
         </div>
         <div className="flex flex-col w-full m-auto gap-1">
