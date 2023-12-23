@@ -5,20 +5,12 @@ interface ListNoteProps {
   notes: DataItem[];
   deleteNote: (id: number) => void;
   toggleArchive: (id: number) => void;
-  searchTerm: string;
 }
 
 export default function ListNote(props: ListNoteProps) {
-  const { notes, deleteNote, toggleArchive, searchTerm } = props;
+  const { notes, deleteNote, toggleArchive } = props;
   const activeNotes = notes.filter((note) => !note.archived);
   const archivedNotes = notes.filter((note) => note.archived);
-
-  // filter notes based on search term
-  // const filteredNotes = notes.filter(
-  //   (note) =>
-  //     note.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-  //     note.body.toLowerCase().includes(searchTerm.toLowerCase())
-  // );
   
   return (
     <main className="flex flex-col m-auto justify-center p-4 max-w-5xl">

@@ -29,14 +29,11 @@ function App() {
     setNotes(archiveNote);
   };
 
-  // search note
-  const [searchTerm, setSearchTerm] = useState<string>("");
-
   return (
     <main className="w-screen min-h-screen h-full flex flex-col">
       <Header/>
       <InputNote addNote={addNote}/>
-      <ListNote notes={notes} deleteNote={deleteNote} toggleArchive={toggleArchive} searchTerm={searchTerm}/>
+      <ListNote notes={notes} deleteNote={deleteNote} toggleArchive={toggleArchive}/>
     </main>
   );
 }
