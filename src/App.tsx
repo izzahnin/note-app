@@ -5,7 +5,7 @@ import InputNote from "./components/InputNote";
 
 function App() {
   return (
-    <main className="w-screen h-screen flex flex-col">
+    <main className="w-screen min-h-screen h-full flex flex-col">
       <Header/>
       <InputNote/>
       <ActiveNote/>

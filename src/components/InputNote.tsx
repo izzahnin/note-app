@@ -1,36 +1,39 @@
 import { useState } from "react";
 
+
 export default function InputNote() {
-  const [judul, setJudul] = useState("");
-  const [isi, setIsi] = useState("");
+  const [title, setTitle] = useState("");
+  const [body, setBody] = useState("");
 
   const onSubmit = () => {
-    console.log("Judul:", judul);
-    console.log("Isi:", isi);
-  };
+    console.log("Note created");
+    console.log(title);
+    console.log(body);
+  }
 
   return (
-    <main className="w-full sm:w-1/2 lg:w-1/3 flex flex-col justify-center mx-auto p-4 gap-3">
+    <form
+    className="w-full sm:w-4/5 md:w-1/2 lg:w-1/3 flex flex-col justify-center mx-auto p-4 gap-3">
       <section className="flex flex-col justify-between">
         <div className="flex flex-col w-full m-auto gap-1">
-          <label className="text-gray-500">Judul</label>
+          <label className="text-gray-500">Title</label>
           <input
             type="text"
             placeholder="Judul catatan"
-            value={judul}
-            onChange={(e) => setJudul(e.target.value)}
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
             className="w-full px-2 py-1 border rounded-md"
             maxLength={50}
           />
-          <span className="text-gray-500 text-right">Sisa karakter: {50 - judul.length}</span>
+          <span className="text-gray-500 text-right">Sisa karakter: {50 - title.length}</span>
         </div>
         <div className="flex flex-col w-full m-auto gap-1">
           <label className="text-gray-500">Isi</label>
           <textarea
-            placeholder="Isi catatan"
-            value={isi}
-            onChange={(e) => setIsi(e.target.value)}
-            className="w-full h-20 px-2 py-1 border rounded-md"
+            placeholder="Content"
+            value={body}
+            onChange={(e) => setBody(e.target.value)}
+            className="w-full h-40 px-2 py-1 border rounded-md"
           ></textarea>
         </div>
       </section>
@@ -41,6 +44,6 @@ export default function InputNote() {
       >
         Buat
       </button>
-    </main>
+    </form>
   );
 }
