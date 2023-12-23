@@ -23,17 +23,15 @@ function App() {
 
   const toggleArchive = (noteId: number) => {
     setIsArchived(!isArchived);
-    const archiveNote = notes.map((note) =>
-      note.id === noteId ? { ...note, archived: !note.archived } : note
-    );
+    const archiveNote = notes.map((note) => (note.id === noteId ? { ...note, archived: !note.archived } : note));
     setNotes(archiveNote);
   };
 
   return (
     <main className="w-screen min-h-screen h-full flex flex-col">
-      <Header/>
-      <InputNote addNote={addNote}/>
-      <ListNote notes={notes} deleteNote={deleteNote} toggleArchive={toggleArchive}/>
+      <Header />
+      <InputNote addNote={addNote} />
+      <ListNote notes={notes} deleteNote={deleteNote} toggleArchive={toggleArchive} />
     </main>
   );
 }
