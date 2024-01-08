@@ -18,15 +18,17 @@ export default function CardNote(props: CardNoteProps) {
   };
 
   return (
-    <main className={`flex flex-col w-full bg-white border-[1px] rounded-lg border-gray-900 h-full justify-between`}>
+    <main
+      className={`flex h-full w-full flex-col justify-between rounded-lg border-[1px] border-gray-900 bg-white`}
+    >
       <section className="flex flex-col p-3">
-        <h1 className="font-bold text-lg mb-1 ">{title}</h1>
-        <span className="text-xs mb-2">{showFormattedDate(createdAt)}</span>
+        <h1 className="mb-1 text-lg font-bold ">{title}</h1>
+        <span className="mb-2 text-xs">{showFormattedDate(createdAt)}</span>
         <p className="text-sm">{body}</p>
       </section>
-      <section className="border-gray-900 flex w-full items-center align-middle font-semibold border-t-[1px]">
+      <section className="flex w-full items-center border-t-[1px] border-gray-900 align-middle font-semibold">
         <button
-          className="rounded-es-lg border-gray-900 w-1/2 hover:text-yellow-700 text-yellow-500  bg-white py-1 "
+          className="w-1/2 rounded-es-lg border-gray-900 bg-white py-1  text-yellow-500 hover:text-yellow-700 "
           onClick={() => {
             // archiveNote();
             onArchiveToggle();
@@ -34,8 +36,11 @@ export default function CardNote(props: CardNoteProps) {
         >
           {isArchived ? "Unarchive" : "Archive"}
         </button>
-        <div className="border-l border-gray-900 h-6"></div>
-        <button className="rounded-ee-lg border-gray-900 w-1/2 hover:text-red-700 text-red-500 bg-white py-1 bg-transparent" onClick={onDelete}>
+        <div className="h-6 border-l border-gray-900"></div>
+        <button
+          className="w-1/2 rounded-ee-lg border-gray-900 bg-transparent bg-white py-1 text-red-500 hover:text-red-700"
+          onClick={onDelete}
+        >
           Delete
         </button>
       </section>

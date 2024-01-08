@@ -23,7 +23,9 @@ function App() {
 
   const toggleArchive = (noteId: number) => {
     setIsArchived(!isArchived);
-    const archiveNote = notes.map((note) => (note.id === noteId ? { ...note, archived: !note.archived } : note));
+    const archiveNote = notes.map((note) =>
+      note.id === noteId ? { ...note, archived: !note.archived } : note,
+    );
     setNotes(archiveNote);
   };
 
@@ -35,10 +37,14 @@ function App() {
   });
 
   return (
-    <main className="w-screen min-h-screen h-full flex flex-col">
+    <main className="flex h-full min-h-screen w-screen flex-col">
       <Header onSearchChange={(query) => setSearchQuery(query)} />
       <InputNote addNote={addNote} />
-      <ListNote notes={filteredNotes} deleteNote={deleteNote} toggleArchive={toggleArchive} />
+      <ListNote
+        notes={filteredNotes}
+        deleteNote={deleteNote}
+        toggleArchive={toggleArchive}
+      />
     </main>
   );
 }
